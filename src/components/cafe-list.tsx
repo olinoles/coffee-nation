@@ -1,10 +1,10 @@
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
+import { ReactComponent as CoffeeCupSvg } from '../assets/coffee_cup.svg';
 
 const CafeList = () => {
   const [cafes, setCafes] = useState<any[]>([]);
-  const [userData, setUserData] = useState<any>();
 
   useEffect(() => {
     async function getCafes() {
@@ -17,62 +17,66 @@ const CafeList = () => {
     if (!cafes?.length) {
       getCafes();
     }
-    async function getUserData() {
-      const docRef = doc(db, 'user_data', 'FLM2Kz9xKRix07romZG1');
-      const docSnap = await getDoc(docRef);
-      setUserData(docSnap.data());
-    }
-    if (!userData) {
-      getUserData();
-    }
-  }, [userData, cafes]);
+  }, [cafes]);
 
-  if (!cafes || !userData) {
+  if (!cafes) {
     return <div>Loading..</div>;
   }
 
-  function getStampsUsedForCafe(cafeId: string, userData: any) {
-    const stamp = userData.stamps.find(
-      (stamp: any) => stamp.cafe_id === cafeId
+  function getStamps(cafe: any) {
+    const stamps = [];
+    for (let i = 0; i < cafe.stamps_total; i++) {
+      const discount = cafe.discounts?.find((d: any) => d.index === i);
+      if (i < cafe.stamps_used) {
+        stamps.push(
+          <div
+            className="border-solid border border-red-400 rounded-full p-1 w-[32px] h-[32px]"
+            key={i}
+          >
+            <CoffeeCupSvg className="size-5 absolute" />
+          </div>
+        );
+        continue;
+      } else if (discount) {
+        stamps.push(
+          <div
+            className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px] flex justify-center items-center"
+            key={i}
+          >
+            <p className="text-black text-xs">SAVE {discount.rate}%</p>
+          </div>
+        );
+        continue;
+      } else if (i < cafe.stamps_total) {
+        stamps.push(
+          <div
+            className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px]"
+            key={i}
+          ></div>
+        );
+        continue;
+      }
+    }
+    stamps.push(
+      <div className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px] flex justify-center items-center">
+        <p className="text-red-300 text-xs">FREE</p>
+      </div>
     );
-    return stamp ? stamp.stamps_used : 0;
-  }
 
-  function getStampsTotalForCafe(cafeId: string, userData: any) {
-    const stamp = userData.stamps.find(
-      (stamp: any) => stamp.cafe_id === cafeId
-    );
-    return stamp ? stamp.stamps_total : 0;
+    return stamps;
   }
 
   return (
     <div className="flex flex-col gap-5">
       {cafes &&
-        userData &&
         cafes.map((cafe, i) => {
           return (
             <div className="bg-gray-100 p-2 rounded-[21px]" key={i}>
               <h2 className="font-bold mb-1">{cafe.name}</h2>
-              <p className="text-gray-400 text-xs font-medium">
+              <p className="text-gray-400 text-xs font-medium mb-3">
                 {cafe.address}
               </p>
-              {/* <div className="flex flex-row gap-3">
-                {Array.from(
-                  Array(getStampsUsedForCafe(cafe.id, userData)).keys()
-                ).map(() => {
-                  return <div className="border-2 rounded-full">
-
-                  </div>;
-                })}
-                {Array.from(
-                  Array(
-                    getStampsTotalForCafe(cafe.id, userData) -
-                      getStampsUsedForCafe(cafe.id, userData)
-                  ).keys()
-                ).map(() => {
-                  return <div>⭐️</div>;
-                })}
-              </div> */}
+              <div className="flex flex-row gap-3">{getStamps(cafe)}</div>
             </div>
           );
         })}
