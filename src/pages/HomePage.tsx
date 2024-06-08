@@ -1,6 +1,6 @@
-import { DataAccessTest } from "./DataAccessTest";
 import { AppHeader } from "../components/header";
 import { LevelProgress } from "../components/level-progress";
+import CafeList from '../components/cafe-list';
 
 export function HomePage() {
   return (
@@ -10,9 +10,8 @@ export function HomePage() {
         Good morning, <br />
         <b className="font-semibold">Oliver</b>
       </h1>
-      {/* <DataAccessTest /> */}
-      <div className="bg-white mt-24 border-2 shadow-md p-3 rounded-[21px]">
-        <LevelProgress />
+      <div className="bg-white mt-24 border-2 shadow-md p-5 rounded-[21px]">
+        <CafeList />
       </div>
     </div>
   );
