@@ -11,7 +11,7 @@ export function HomePage() {
         Good morning, <br />
         <b className="font-semibold">Oliver</b>
       </h1>
-      <div className="bg-white mt-24 border-2 flex flex-col gap-6 shadow-md p-3 rounded-[21px]">
+      <div className="bg-white mt-24 border-2 flex flex-col gap-4 shadow-md p-3 rounded-[21px]">
         {/* <DataAccessTest /> */}
         <LevelProgress />
         <h2 className="font-semibold text-sm text-black">Your promos</h2>

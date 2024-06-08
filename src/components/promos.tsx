@@ -2,11 +2,11 @@ import { PromoDeal } from "./promo-deal";
 
 const promos = [
   {
-    description: "Buy one, get one free",
+    description: "Buy one,\nGet one free",
     icon: "bogo",
   },
   {
-    description: "50% OFF",
+    description: "50% OFF\nAny coffee",
     icon: "discount",
   },
   {

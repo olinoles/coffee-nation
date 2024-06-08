@@ -1,7 +1,7 @@
-import { ReactComponent as CheersSvg } from "../assets/promos/cheers.svg";
-import { ReactComponent as Discount50 } from "../assets/promos/discount_50.svg";
+import CheersSvg from "../assets/promos/cheers.png";
+import Discount50 from "../assets/promos/discount_50.png";
 
-const promoIcons: Record<string, React.FunctionComponent> = {
+const promoIcons: Record<string, any> = {
   discount: Discount50,
   bogo: CheersSvg,
 };
@@ -13,7 +13,7 @@ interface PromoIconProps {
 function PromoIcon({ icon }: PromoIconProps) {
   // Correct! JSX type can be a capitalized variable.
   const Icon = promoIcons[icon];
-  return <Icon />;
+  return <img src={Icon} alt={icon} className="size-6 object-contain" />;
 }
 
 interface PromoDealProps {
@@ -23,11 +23,9 @@ interface PromoDealProps {
 
 export function PromoDeal({ description, icon }: PromoDealProps) {
   return (
-    <div className="p-1 rounded-xl shrink-0 w-36 flex items-center gap-2 bg-white bg-brand-blue/5 border-brand-blue border">
-      <div className="size-7 flex items-center">
-        <PromoIcon icon={icon} />
-      </div>
-      <span className="text-gray-600 text-xs flex-1 font-medium">
+    <div className="py-1 rounded-xl shrink-0 pr-7 pl-2 flex items-center gap-2  bg-brand-blue/5 border-brand-blue border">
+      <PromoIcon icon={icon} />
+      <span className="text-gray-600 text-xs flex-1 font-medium whitespace-pre-wrap">
         {description}
       </span>
     </div>
