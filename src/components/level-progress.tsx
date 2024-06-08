@@ -8,7 +8,7 @@ export function LevelProgress() {
     <div className="flex items-stretch w-full gap-5">
       <div className="relative size-14 mt-1 flex items-center justify-center">
         <div className=" absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center">
-          <StarBgSvg className="size-12 mt-0.5 opacity-35 absolute animate-spin-slow" />
+          <StarBgSvg className="size-12 mt-0.5 opacity-75 absolute animate-spin-slow" />
           <StarSvg className="size-12 absolute" />
           <span className=" text-yellow-800 absolute text-xl pt-1 font-semibold">
             4
