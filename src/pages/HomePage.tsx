@@ -5,7 +5,7 @@ import { PromoDeals } from "../components/promos";
 
 export function HomePage() {
   return (
-    <div className="max-w-lg gap-10 p-5 mx-auto relative h-full flex flex-1 flex-col">
+    <div className="max-w-lg gap-16 p-5 mx-auto relative h-full flex flex-1 flex-col">
       <AppHeader />
       <h1 className="text-white text-2xl mx-auto text-center">
         Good morning, <br />
