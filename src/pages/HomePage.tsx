@@ -1,5 +1,6 @@
 import CafeList from '../components/cafe-list';
 import { AppHeader } from '../components/header';
+import { LevelProgress } from "../components/level-progress";
 
 export function HomePage() {
   return (

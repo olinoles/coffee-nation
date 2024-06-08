@@ -1,9 +1,10 @@
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { useEffect, useMemo, useState } from 'react';
 import { db } from '../firebase';
+import {ReactComponent as CoffeCup} from ''
 
 const CafeList = () => {
-  const [cafes, setCafes] = useState<any[]>([]);
+  const [cafes, setCafes] = useState<any[]>([``]);
   const [userData, setUserData] = useState<any>();
 
   useEffect(() => {
@@ -60,7 +61,9 @@ const CafeList = () => {
                 {Array.from(
                   Array(getStampsUsedForCafe(cafe.id, userData)).keys()
                 ).map(() => {
-                  return <div className="border-2 rounded-full">🌟</div>;
+                  return <div className="border-2 rounded-full">
+
+                  </div>;
                 })}
                 {Array.from(
                   Array(
