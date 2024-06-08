@@ -5,7 +5,7 @@ import { ReactComponent as DiscountSvg } from "../assets/discount.svg";
 export function LevelProgress() {
   return (
     <div className="flex items-stretch w-full gap-5">
-      <div className="relative ml-3 flex items-center justify-center">
+      <div className="relative flex items-center justify-center">
         <StarSvg className="mx-auto size-12" />
         <span className="absolute left-1/2 top-1/2 text-yellow-800 text-xl pt-1 -translate-y-1/2 -translate-x-1/2 font-semibold">
           4
