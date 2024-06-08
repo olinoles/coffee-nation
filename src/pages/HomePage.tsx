@@ -1,6 +1,7 @@
-import CafeList from '../components/cafe-list';
-import { AppHeader } from '../components/header';
+import CafeList from "../components/cafe-list";
+import { AppHeader } from "../components/header";
 import { LevelProgress } from "../components/level-progress";
+import { PromoDeals } from "../components/promos";
 
 export function HomePage() {
   return (
@@ -10,7 +11,12 @@ export function HomePage() {
         Good morning, <br />
         <b className="font-semibold">Oliver</b>
       </h1>
-      <div className="bg-white mt-24 border-2 shadow-md p-5 rounded-[21px]">
+      <div className="bg-white mt-24 border-2 flex flex-col gap-3 shadow-md p-3 rounded-[21px]">
+        {/* <DataAccessTest /> */}
+        <LevelProgress />
+        <h2 className="font-semibold text-sm text-black">Your promos</h2>
+        <PromoDeals />
+        <h2 className="font-semibold text-sm text-black">Your latest visits</h2>
         <CafeList />
       </div>
     </div>

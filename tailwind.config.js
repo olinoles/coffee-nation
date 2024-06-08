@@ -25,6 +25,7 @@ module.exports = {
         },
         brand: {
           grey: "#cdcbbe",
+          blue: "#5086EF",
         },
       },
     },
