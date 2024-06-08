@@ -7,23 +7,20 @@ export function PromoDeals() {
   const [promos, setPromos] = useState<any[]>([]);
 
   useEffect(() => {
-    async function getCafes() {
+    async function getPromos() {
       const querySnapshot = await getDocs(collection(db, "promos"));
-      const data = querySnapshot.docs.map((doc) => {
-        return doc.data();
-      });
-      console.log(data);
+      const data = querySnapshot.docs.map((doc) => doc.data());
       setPromos(data);
     }
     if (!promos?.length) {
-      getCafes();
+      getPromos();
     }
   }, [promos]);
 
   return (
     <div className="flex gap-2 no-scrollbar overflow-x-scroll">
-      {promos.map((promo, index) => (
-        <PromoDeal key={index} {...promo} />
+      {promos.map((promo, i) => (
+        <PromoDeal key={i} {...promo} />
       ))}
     </div>
   );

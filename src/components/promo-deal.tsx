@@ -1,9 +1,11 @@
-import CheersSvg from "../assets/promos/cheers.png";
-import Discount50 from "../assets/promos/discount_50.png";
+import CheersImage from "../assets/promos/cheers.png";
+import Discount50Image from "../assets/promos/discount_50.png";
+import MuffinImage from "../assets/promos/muffin.png";
 
 const promoIcons: Record<string, any> = {
-  discount_50: Discount50,
-  bogo: CheersSvg,
+  discount_50: Discount50Image,
+  bogo: CheersImage,
+  muffin: MuffinImage,
 };
 
 interface PromoIconProps {

@@ -1,14 +1,14 @@
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { db } from '../firebase';
-import { ReactComponent as CoffeeCupSvg } from '../assets/coffee_cup.svg';
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { ReactComponent as CoffeeCupSvg } from "../assets/coffee_cup.svg";
 
 const CafeList = () => {
   const [cafes, setCafes] = useState<any[]>([]);
 
   useEffect(() => {
     async function getCafes() {
-      const querySnapshot = await getDocs(collection(db, 'cafes'));
+      const querySnapshot = await getDocs(collection(db, "cafes"));
       const data = querySnapshot.docs.map((doc) => {
         return doc.data();
       });
@@ -30,27 +30,29 @@ const CafeList = () => {
       if (i < cafe.stamps_used) {
         stamps.push(
           <div
-            className="border-solid border border-red-400 rounded-full p-1 w-[32px] h-[32px]"
+            className="border-solid relative border border-brand-pink rounded-full p-1 w-[32px] h-[32px]"
             key={i}
           >
-            <CoffeeCupSvg className="size-5 absolute" />
+            <CoffeeCupSvg className="size-5 absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" />
           </div>
         );
         continue;
       } else if (discount) {
         stamps.push(
           <div
-            className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px] flex justify-center items-center"
+            className="border border-dashed flex justify-center rounded-full border-gray-500 w-[32px] h-[32px] items-center"
             key={i}
           >
-            <p className="text-black text-xs">SAVE {discount.rate}%</p>
+            <p className="text-black text-xs leading-0 -mt-2 text-center font-semibold">
+              <sub className="text-[6px]">SAVE</sub> {discount.rate}%
+            </p>
           </div>
         );
         continue;
       } else if (i < cafe.stamps_total) {
         stamps.push(
           <div
-            className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px]"
+            className="border border-dashed rounded-full border-gray-500 w-[32px] h-[32px]"
             key={i}
           ></div>
         );
@@ -58,8 +60,8 @@ const CafeList = () => {
       }
     }
     stamps.push(
-      <div className="border border-dotted rounded-full border-gray-500 w-[32px] h-[32px] flex justify-center items-center">
-        <p className="text-red-300 text-xs">FREE</p>
+      <div className="border border-dashed rounded-full border-gray-500 w-[32px] h-[32px] flex justify-center items-center">
+        <p className="text-brand-pink text-xs font-semibold">FREE</p>
       </div>
     );
 
@@ -69,9 +71,9 @@ const CafeList = () => {
   return (
     <div className="flex flex-col gap-5">
       {cafes &&
-        cafes.map((cafe, i) => {
+        cafes.map((cafe) => {
           return (
-            <div className="bg-gray-100 p-2 rounded-[21px]" key={i}>
+            <div className="bg-gray-100 p-2 px-4 rounded-xl" key={cafe.id}>
               <h2 className="font-bold mb-1">{cafe.name}</h2>
               <p className="text-gray-400 text-xs font-medium mb-3">
                 {cafe.address}

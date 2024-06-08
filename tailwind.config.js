@@ -26,7 +26,11 @@ module.exports = {
         brand: {
           grey: "#cdcbbe",
           blue: "#5086EF",
+          pink: "#F07586",
         },
+      },
+      animation: {
+        "spin-slow": "spin 15s linear infinite",
       },
     },
   },
