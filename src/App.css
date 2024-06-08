@@ -2,6 +2,11 @@
   font-family: "poppins";
 }
 
+html {
+  background: #cdcbbe;
+  overflow: hidden;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
