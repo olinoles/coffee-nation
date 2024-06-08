@@ -23,6 +23,9 @@ module.exports = {
           900: "#8a1222",
           950: "#4b040d",
         },
+        brand: {
+          grey: "#cdcbbe",
+        },
       },
     },
   },
