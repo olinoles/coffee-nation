@@ -2,7 +2,7 @@ import CheersSvg from "../assets/promos/cheers.png";
 import Discount50 from "../assets/promos/discount_50.png";
 
 const promoIcons: Record<string, any> = {
-  discount: Discount50,
+  discount_50: Discount50,
   bogo: CheersSvg,
 };
 
@@ -17,17 +17,18 @@ function PromoIcon({ icon }: PromoIconProps) {
 }
 
 interface PromoDealProps {
+  title: string;
   description: string;
   icon: string;
 }
 
-export function PromoDeal({ description, icon }: PromoDealProps) {
+export function PromoDeal({ title, description, icon }: PromoDealProps) {
   return (
     <div className="py-1 rounded-xl shrink-0 pr-7 pl-2 flex items-center gap-2  bg-brand-blue/5 border-brand-blue border">
       <PromoIcon icon={icon} />
-      <span className="text-gray-600 text-xs flex-1 font-medium whitespace-pre-wrap">
-        {description}
-      </span>
+      <p className="text-gray-600 text-xs flex-1 font-medium whitespace-pre-wrap">
+        {`${title}\n${description}`}
+      </p>
     </div>
   );
 }
