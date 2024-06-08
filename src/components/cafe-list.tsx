@@ -1,10 +1,9 @@
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import {ReactComponent as CoffeCup} from ''
 
 const CafeList = () => {
-  const [cafes, setCafes] = useState<any[]>([``]);
+  const [cafes, setCafes] = useState<any[]>([]);
   const [userData, setUserData] = useState<any>();
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const CafeList = () => {
     if (!userData) {
       getUserData();
     }
-  }, []);
+  }, [userData, cafes]);
 
   if (!cafes || !userData) {
     return <div>Loading..</div>;
@@ -50,14 +49,14 @@ const CafeList = () => {
     <div className="flex flex-col gap-5">
       {cafes &&
         userData &&
-        cafes.map((cafe) => {
+        cafes.map((cafe, i) => {
           return (
-            <div className="bg-gray-100 p-2 rounded-[21px]" key={cafe.id}>
+            <div className="bg-gray-100 p-2 rounded-[21px]" key={i}>
               <h2 className="font-bold mb-1">{cafe.name}</h2>
               <p className="text-gray-400 text-xs font-medium">
                 {cafe.address}
               </p>
-              <div className="flex flex-row gap-3">
+              {/* <div className="flex flex-row gap-3">
                 {Array.from(
                   Array(getStampsUsedForCafe(cafe.id, userData)).keys()
                 ).map(() => {
@@ -73,7 +72,7 @@ const CafeList = () => {
                 ).map(() => {
                   return <div>⭐️</div>;
                 })}
-              </div>
+              </div> */}
             </div>
           );
         })}
