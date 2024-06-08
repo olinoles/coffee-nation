@@ -1,10 +1,14 @@
 import React from "react";
 import "./App.css";
 
+import { Layout } from "./pages/HomeLayout";
+
 function App() {
   return (
-    <div className="App">
-      <p>test font</p>
+    <div className="App bg-black h-screen">
+      <Layout>
+        <h1 className="text-white text-4xl">Hello World</h1>
+      </Layout>
     </div>
   );
 }
