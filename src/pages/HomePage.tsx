@@ -1,3 +1,5 @@
+import { DataAccessTest } from './DataAccessTest';
+
 export function HomePage() {
   return (
     <div className="max-w-lg  mx-auto relative h-full flex flex-1">
@@ -5,6 +7,7 @@ export function HomePage() {
         Good morning, <br />
         <b className="font-semibold">Oliver</b>
       </h1>
+      {/* <DataAccessTest /> */}
     </div>
   );
 }
