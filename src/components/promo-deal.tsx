@@ -13,7 +13,7 @@ interface PromoIconProps {
 function PromoIcon({ icon }: PromoIconProps) {
   // Correct! JSX type can be a capitalized variable.
   const Icon = promoIcons[icon];
-  return <img src={Icon} alt={icon} className="size-6 object-contain" />;
+  return <img src={Icon} alt={icon} className="size-8 m-1 object-contain" />;
 }
 
 interface PromoDealProps {
