@@ -1,4 +1,3 @@
-import QrCodeImage from "../assets/qrcode.png";
 import {
   Dialog,
   DialogPanel,
