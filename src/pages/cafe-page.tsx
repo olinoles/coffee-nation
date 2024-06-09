@@ -1,28 +1,12 @@
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
+import { useParams } from "react-router-dom";
 import { ReactComponent as CoffeeCupSvg } from "../assets/coffee_cup.svg";
-import { Link } from "react-router-dom";
 
-const CafeList = () => {
-  const [cafes, setCafes] = useState<any[]>([]);
-
-  useEffect(() => {
-    async function getCafes() {
-      const querySnapshot = await getDocs(collection(db, "cafes"));
-      const data = querySnapshot.docs.map((doc) => {
-        return doc.data();
-      });
-      setCafes(data);
-    }
-    if (!cafes?.length) {
-      getCafes();
-    }
-  }, [cafes]);
-
-  if (!cafes) {
-    return <div>Loading..</div>;
-  }
+export function CafePage() {
+  const [cafe, setCafe] = useState<any>(null);
+  const { cafeId } = useParams<{ cafeId: string }>();
 
   function getStamps(cafe: any) {
     const stamps = [];
@@ -69,24 +53,26 @@ const CafeList = () => {
     return stamps;
   }
 
-  return (
-    <div className="flex flex-col gap-5">
-      {cafes &&
-        cafes.map((cafe) => {
-          return (
-            <Link to={`cafe/${cafe.id}`}>
-              <div className="bg-gray-100 p-2 px-4 rounded-xl" key={cafe.id}>
-                <h2 className="font-bold mb-1">{cafe.name}</h2>
-                <p className="text-gray-400 text-xs font-medium mb-3">
-                  {cafe.address}
-                </p>
-                <div className="flex flex-row gap-3">{getStamps(cafe)}</div>
-              </div>
-            </Link>
-          );
-        })}
-    </div>
-  );
-};
+  useEffect(() => {
+    async function getCafe() {
+      const docRef = doc(db, "cafes", cafeId!);
+      const docSnap = await getDoc(docRef);
+      setCafe(docSnap.data());
+    }
+    if (!cafe) {
+      getCafe();
+    }
+  }, [cafeId, cafe]);
 
-export default CafeList;
+  return cafe ? (
+    <div className="flex flex-col">
+      <h1 className="text-lg font-semibold">{cafe.name}</h1>
+      <h2 className="text-xs text-gray-400 font-medium">{cafe.address}</h2>
+      <div className="flex mt-5">
+        <div className="flex gap-3">{getStamps(cafe)}</div>
+      </div>
+    </div>
+  ) : (
+    <div>Loading..</div>
+  );
+}
