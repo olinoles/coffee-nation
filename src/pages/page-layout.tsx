@@ -43,7 +43,7 @@ export function PageLayout({ children }: { children: React.ReactNode }) {
             <PageHeader />
             <hr className="border-gray-300 mx-3 border-dashed my-2" />
             <Link to="/">
-              <div className="flex gap-1 mx-3 text-gray-400 items-center">
+              <div className="flex gap-1 mx-3 text-gray-600 font-semibold items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
