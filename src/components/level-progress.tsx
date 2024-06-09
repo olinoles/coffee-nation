@@ -6,7 +6,7 @@ import DiscountModal from "./discount-modal";
 import { useState } from "react";
 
 export function LevelProgress() {
-  const [discountModal, setDiscountModalOpen] = useState(true);
+  const [discountModal, setDiscountModalOpen] = useState(false);
   return (
     <div className="flex items-stretch w-full gap-5">
       <div className="relative size-14 mt-1 flex items-center justify-center">
