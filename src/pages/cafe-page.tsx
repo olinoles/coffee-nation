@@ -68,8 +68,11 @@ export function CafePage() {
     <div className="flex flex-col">
       <h1 className="text-lg font-semibold">{cafe.name}</h1>
       <h2 className="text-xs text-gray-400 font-medium">{cafe.address}</h2>
-      <div className="flex mt-5">
-        <div className="flex gap-3">{getStamps(cafe)}</div>
+      <div className="flex flex-col mt-5 gap-5">
+        <div className="flex gap-3 my-5">{getStamps(cafe)}</div>
+        <p className="text-sm font-medium text-gray-600">
+          Work in progress, more coming soon :)
+        </p>
       </div>
     </div>
   ) : (
