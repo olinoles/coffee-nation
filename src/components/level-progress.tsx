@@ -2,8 +2,11 @@ import { ReactComponent as StarSvg } from "../assets/star.svg";
 import { ReactComponent as StarBgSvg } from "../assets/star-bg.svg";
 import { ReactComponent as CoffeeCupSvg } from "../assets/coffee_cup.svg";
 import { ReactComponent as DiscountSvg } from "../assets/discount.svg";
+import DiscountModal from "./discount-modal";
+import { useState } from "react";
 
 export function LevelProgress() {
+  const [discountModal, setDiscountModalOpen] = useState(true);
   return (
     <div className="flex items-stretch w-full gap-5">
       <div className="relative size-14 mt-1 flex items-center justify-center">
@@ -32,12 +35,16 @@ export function LevelProgress() {
         </div>
       </div>
 
-      <div className="bg-gray-100 py-1 px-2 gap-1 flex flex-col rounded-lg items-center justify-center">
+      <div
+        className="bg-gray-100 py-1 px-2 gap-1 flex flex-col rounded-lg items-center justify-center"
+        onClick={() => setDiscountModalOpen(true)}
+      >
         <DiscountSvg className="size-10" />
-        <span className="text-xs text-black font-bold whitespace-nowrap">
+        <span className="text-xs underline decoration-dashed underline-offset-2 text-black font-bold whitespace-nowrap">
           15% OFF
         </span>
       </div>
+      <DiscountModal open={discountModal} setOpen={setDiscountModalOpen} />
     </div>
   );
 }
