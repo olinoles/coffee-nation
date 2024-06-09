@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { PageLayout } from "./pages/page-layout";
 import { CafePage } from "./pages/cafe-page";
+import { PointsBalancePage } from "./pages/points-page";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
         element: (
           <PageLayout>
             <CafePage />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "/points",
+        element: (
+          <PageLayout>
+            <PointsBalancePage />
           </PageLayout>
         ),
       },
